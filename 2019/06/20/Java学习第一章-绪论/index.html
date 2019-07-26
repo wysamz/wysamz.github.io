@@ -220,15 +220,17 @@
 <h2 id="Java应用程序的运行机制"><a href="#Java应用程序的运行机制" class="headerlink" title="Java应用程序的运行机制"></a>Java应用程序的运行机制</h2><p> 计算机高级语言的类型主要有编译型和解释型两种，而Java 语言是两种类型的结合。</p>
 <p>Java首先利用文本编辑器编写 Java源程序，源文件的后缀名为.java；再利用编译器（javac）将源程序编译成字节码文件，字节码文件的后缀名为.class； 最后利用虚拟机（解释器，java）解释执行。</p>
 <img src="/2019/06/20/Java学习第一章-绪论/Java程序运行机制.png" title="[Java程序运行机制]">
-<p><img src="/2019/06/20/Java学习第一章-绪论/Java%E7%A8%8B%E5%BA%8F%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6.png" alt="Java程序运行机制"></p>
+
 <h2 id="JVM、JRE和JDK"><a href="#JVM、JRE和JDK" class="headerlink" title="JVM、JRE和JDK"></a>JVM、JRE和JDK</h2><h3 id="JVM-Java-Virtual-Machine"><a href="#JVM-Java-Virtual-Machine" class="headerlink" title="JVM(Java Virtual Machine)"></a>JVM(Java Virtual Machine)</h3><p>就是一个虚拟的用于执行bytecode字节码的”虚拟计算机”。它也定义了指令集、寄存器集、结构栈、垃圾收集堆、内存区域。JVM负责将Java字节码解释运行，边解释边运行，这样，速度就会受到一定的影响。</p>
 <p>不同的操作系统有不同的虚拟机。Java 虚拟机机制屏蔽了底层运行平台的差别，实现了“一次编译，随处运行”。 Java虚拟机是实现跨平台的核心机制。</p>
-<p><img src="/2019/06/20/Java学习第一章-绪论/JVM.png" alt="JVM"></p>
+<img src="/2019/06/20/Java学习第一章-绪论/JVM.png" title="[JVM]">
+
 <h3 id="JRE-Java-Runtime-Environment"><a href="#JRE-Java-Runtime-Environment" class="headerlink" title="JRE( Java Runtime Environment)"></a>JRE( Java Runtime Environment)</h3><p>包含Java虚拟机、库函数、运行Java应用程序所必须的文件。</p>
 <h3 id="JDK-Java-Development-Kit"><a href="#JDK-Java-Development-Kit" class="headerlink" title="JDK (Java  Development Kit)"></a>JDK (Java  Development Kit)</h3><p>包含JRE，以及增加编译器和调试器等用于程序开发的文件。</p>
-<p><img src="/2019/06/20/Java学习第一章-绪论/JDK%E3%80%81JRE%E3%80%81JVM%E5%85%B3%E7%B3%BB.png" alt="JDK、JRE、JVM关系.png"></p>
+<img src="/2019/06/20/Java学习第一章-绪论/JDK、JRE、JVM关系.png" title="[JDK、JRE、JVM关系.png]">
+
 <hr>
-<p>整理自<a href="http://www.bjsxt.com/2014/down_0425/34.html" target="_blank" rel="noopener">http://www.bjsxt.com/2014/down_0425/34.html</a></p>
+<p>整理自<a href="http://www.bjsxt.com/2014/down_0425/34.html" title="[尚学堂]" target="_blank" rel="noopener"></a></p>
 
         </div>
 
