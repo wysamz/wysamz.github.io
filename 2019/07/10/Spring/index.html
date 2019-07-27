@@ -294,24 +294,25 @@
 <li><p>(..)：表示方法的参数是任意数量和类型</p>
 </li>
 <li><p>声明切点的另两种方式</p>
-<blockquote>
-<p><strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
-<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<p>​            &lt;aop:pointcut id=”loggerCutPoint” expression=” execution(* test2.ProductService.*(..))”/&gt;</p>
-<p>​            &lt;aop:around pointcut-ref=”loggerCutPoint” method=”time”/&gt;</p>
-<p>&lt; /aop:aspect&gt;</p>
-<p><strong>匿名切入点Bean</strong>：该切点只被该通知使用</p>
-<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<p>​            &lt;aop:around pointcut=” execution(* test2.ProductService.*(..))” method=”time”/&gt;</p>
-<p>&lt; /aop:aspect&gt;</p>
-</blockquote>
+<p>1）<strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt; /<span class="attr">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
 </li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>2）**匿名切入点Bean**：该切点只被该通知使用
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><ul>
 <li><p>aspect：切面</p>
 <blockquote>
 <p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<pre><code>&lt;aop:around pointcut-ref=&quot;loggerCutPoint&quot; method=&quot;time&quot;/&gt;</code></pre><p>&lt; /aop:aspect&gt;</p>
+<pre><code>\&lt;aop:around pointcut-ref=&quot;loggerCutPoint&quot; method=&quot;time&quot;/&gt;</code></pre><p>&lt; /aop:aspect&gt;</p>
 </blockquote>
 <ul>
 <li><p>ref：表示引用的类，即这个切面执行的是id为”LoggerAspect”的类中的方法</p>
@@ -325,11 +326,8 @@
 </blockquote>
 </li>
 <li><p>pointcut-ref：指定切点，建立了切点与切面的连接</p>
-</li>
-<li><p>method：通知执行时，调用的代理类（切面）中的方法</p>
-</li>
-</ul>
-</li>
+<ul>
+<li>method：通知执行时，调用的代理类（切面）中的方法</li>
 </ul>
 </li>
 </ul>
