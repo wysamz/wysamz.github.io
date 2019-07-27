@@ -278,62 +278,58 @@
 <li><p>配置文件</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"s"</span> <span class="attr">class</span>=<span class="string">"test2.ProductService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"LoggerAspect"</span> <span class="attr">class</span>=<span class="string">"test2.LoggerAspect"</span>/&gt;</span>	<span class="comment">&lt;!--id是不可重复的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>	<span class="comment">&lt;!--aop配置，每一个子元素都相当于一个bean--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span>	</span></span><br><span class="line"><span class="tag">                      <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span>	<span class="comment">&lt;!--该切点可以共享--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span>	<span class="comment">&lt;!--一个切面--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span>	<span class="comment">&lt;!--一条通知--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<ul>
+<ol>
 <li><p>pointcut：切点。相当于一个触发器，一旦表达式中的方法执行了，即触发切面</p>
 <blockquote>
 <p>expression=” execution(* test2.ProductService.*(..))”</p>
-<ul>
-<li>execution：连接点</li>
-</ul>
 </blockquote>
-<ul>
-<li><p>第一个*：返回任意类型，包括void</p>
+<p>execution：连接点</p>
+<p>第一个*：返回任意类型，包括void</p>
+<p>test2.ProductService.：表示test2包下ProductService类的任意方法</p>
+<p>(..)：表示方法的参数是任意数量和类型</p>
 </li>
-<li><p>test2.ProductService.*：表示test2包下ProductService类的任意方法</p>
+</ol>
 </li>
-<li><p>(..)：表示方法的参数是任意数量和类型</p>
-</li>
+</ul>
+<ol start="2">
 <li><p>声明切点的另两种方式</p>
-<p>1）<strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt; /<span class="attr">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>  1）<strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
+  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt; /<span class="attr">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 
 </li>
-</ul>
+</ol>
 </li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>2）**匿名切入点Bean**：该切点只被该通知使用
+<pre><code>   2）**匿名切入点Bean**：该切点只被该通知使用
 
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><ul>
-<li><p>aspect：切面</p>
-<blockquote>
-<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<p>​    &lt;aop:around pointcut-ref=”loggerCutPoint” method=”time”/&gt;</p>
-<p>&lt; /aop:aspect&gt;</p>
-</blockquote>
-<ul>
-<li><p>ref：表示引用的类，即这个切面执行的是id为”LoggerAspect”的类中的方法</p>
-</li>
-<li><p>around：表示包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为</p>
-<blockquote>
-<p>before——在方法调用之前调用通知</p>
-<p>after——在方法完成之后调用通知，无论方法执行成功与否</p>
-<p>after-returning——在方法执行成功之后调用通知</p>
-<p>after-throwing——在方法抛出异常后进行通知</p>
-</blockquote>
-<ul>
-<li>pointcut-ref：指定切点，建立了切点与切面的连接</li>
-<li>method：通知执行时，调用的代理类（切面）中的方法</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
+   <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+3. aspect：切面
+
+   &gt; \&lt;aop:aspect id=&quot;logAspect&quot; ref=&quot;LoggerAspect&quot;&gt;
+   &gt;
+   &gt; ​    \&lt;aop:around pointcut-ref=&quot;loggerCutPoint&quot; method=&quot;time&quot;/&gt;
+ &gt;
+   &gt; \&lt; /aop:aspect&gt;
+
+   ref：表示引用的类，即这个切面执行的是id为&quot;LoggerAspect&quot;的类中的方法
+
+   around：表示包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为
+
+   pointcut-ref：指定切点，建立了切点与切面的连接
+
+   method：通知执行时，调用的代理类（切面）中的方法
+
+4. 除 around 外，其它四种通知形式
+
+   &gt; before——在方法调用之前调用通知
+   &gt;
+   &gt; after——在方法完成之后调用通知，无论方法执行成功与否
+   &gt;
+   &gt; after-returning——在方法执行成功之后调用通知
+   &gt;
+   &gt; after-throwing——在方法抛出异常后进行通知</code></pre><ul>
 <li><p>用注解执行AOP</p>
 <ul>
 <li><p>用<strong>@Component(“s”)</strong> 注解业务类，表明这是一个bean，交由Spring管理</p>
