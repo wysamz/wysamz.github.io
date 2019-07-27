@@ -312,7 +312,8 @@
 <li><p>aspect：切面</p>
 <blockquote>
 <p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<pre><code>\&lt;aop:around pointcut-ref=&quot;loggerCutPoint&quot; method=&quot;time&quot;/&gt;</code></pre><p>&lt; /aop:aspect&gt;</p>
+<p>​    &lt;aop:around pointcut-ref=”loggerCutPoint” method=”time”/&gt;</p>
+<p>&lt; /aop:aspect&gt;</p>
 </blockquote>
 <ul>
 <li><p>ref：表示引用的类，即这个切面执行的是id为”LoggerAspect”的类中的方法</p>
@@ -324,14 +325,15 @@
 <p>after-returning——在方法执行成功之后调用通知</p>
 <p>after-throwing——在方法抛出异常后进行通知</p>
 </blockquote>
-</li>
-<li><p>pointcut-ref：指定切点，建立了切点与切面的连接</p>
 <ul>
+<li>pointcut-ref：指定切点，建立了切点与切面的连接</li>
 <li>method：通知执行时，调用的代理类（切面）中的方法</li>
 </ul>
 </li>
 </ul>
 </li>
+</ul>
+<ul>
 <li><p>用注解执行AOP</p>
 <ul>
 <li><p>用<strong>@Component(“s”)</strong> 注解业务类，表明这是一个bean，交由Spring管理</p>
