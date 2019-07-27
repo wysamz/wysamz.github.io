@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Java学习第二章 基本语法（上） | Wysam1972</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Wysam&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Wysam&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Java学习第二章 基本语法（上）</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wysam</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">七月 27, 2019&nbsp;&nbsp;14:27:04</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java学习/">Java学习</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>符号</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单行注释</td>
+<td>//</td>
+<td align="left">注释只在源码有，在字节码文件中没有，故编译程序编译时会跳过注释语句</td>
+</tr>
+<tr>
+<td>多行注释</td>
+<td>/**/</td>
+<td align="left">不能嵌套使用</td>
+</tr>
+<tr>
+<td>文档注释</td>
+<td>/** */</td>
+<td align="left">包含一些说明性文字及一些JavaDoc卷标，后期写项目时，可生成项目的API</td>
+</tr>
+</tbody></table>
+<h2 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h2><h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><ul>
+<li>以<code>字母、下划线_、美元符号$</code>开头</li>
+<li>其它部分除了上述三种外，还可以是<code>数字</code></li>
+<li><code>大小写敏感</code>，长度无限制</li>
+<li>不可以是 Java 的<code>关键词</code></li>
+</ul>
+<h3 id="使用规范"><a href="#使用规范" class="headerlink" title="使用规范"></a>使用规范</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>规范</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类名</td>
+<td>每个单词首字母大写，如 Man, GoodMan</td>
+</tr>
+<tr>
+<td>方法、变量</td>
+<td>第一个单词小写，第二个开始首字母大写，如 eatFood()[^驼峰原则]</td>
+</tr>
+<tr>
+<td>常量</td>
+<td>全大写，单词用_ 隔开，如 AGE_MAX</td>
+</tr>
+</tbody></table>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>定义</th>
+<th>生命周期</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>局部变量<br>local variable</td>
+<td>方法或语句块内部定义的变量</td>
+<td>从声明位置开始到方法或语句块执行完毕为止</td>
+<td>必须初始化</td>
+</tr>
+<tr>
+<td>成员变量<br>（实例变量）<br>member variable</td>
+<td>方法外部、类的内部定义的变量<br>不使用static关键词</td>
+<td>从属于对象，伴随对象始终</td>
+<td>自行初始化</td>
+</tr>
+<tr>
+<td>静态变量<br>（类变量）<br>static variable</td>
+<td>使用static定义</td>
+<td>从属于类，从类加载到卸除</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="成员变量初始化值"><a href="#成员变量初始化值" class="headerlink" title="成员变量初始化值"></a>成员变量初始化值</h4><table>
+<thead>
+<tr>
+<th>基础数据类型</th>
+<th>值</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>int</td>
+<td>0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>char</td>
+<td>‘\u0000’</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>boolean</td>
+<td>false</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一般常量</td>
+<td>1、‘a’、true、“你好”</td>
+</tr>
+<tr>
+<td>符号常量</td>
+<td>final String NAME=”张三”</td>
+</tr>
+</tbody></table>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占用存储空间(byte)</th>
+<th>位数(bit)[^1字节=8位]</th>
+<th>表数范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>byte</td>
+<td>1字节</td>
+<td>2^8^(256)</td>
+<td>-2^7^ <del>2^7^-1（-128</del>127，负号和0分别占1位）</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2字节</td>
+<td>2^16^(65536)</td>
+<td>-2^15^ ~ 2^15^-1(-32768 ~ 32767)</td>
+</tr>
+<tr>
+<td>int[^默认]</td>
+<td>4字节</td>
+<td>2^32^</td>
+<td>-2^31^ ~ 2^31^-1(约正负21亿)</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8字节</td>
+<td>2^64^</td>
+<td>-2^63^~ 2^63^-1</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>整型常量默认是 int 类型，当超过21亿时，要在末尾加 L(l)，转为 long 类型</p>
+</li>
+<li><p>整型常量的表现形式</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>十进制</td>
+<td>如99，-500</td>
+</tr>
+<tr>
+<td>八进制整数</td>
+<td>以0开头，如015</td>
+</tr>
+<tr>
+<td>十六进制数[^0<del>9,a</del>f]</td>
+<td>以0x[^字母X]或0X开头，如0x15</td>
+</tr>
+<tr>
+<td>二进制数</td>
+<td>以0b或0B开头，如0b011100</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>占用存储空间</th>
+<th>表数范围</th>
+<th>备注</th>
+<th>强制转换</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float<br>单精度类型</td>
+<td>4字节</td>
+<td>-3.403E38 ~ 3.403E38</td>
+<td>尾数精确到7位有效数字<br>赋值时须加后缀，否则损失精度</td>
+<td>末尾加F(f)</td>
+</tr>
+<tr>
+<td>double<br>双精度类型</td>
+<td>8字节</td>
+<td>-1.798E308 ~ 1.798E308</td>
+<td>浮点型数据的默认类型</td>
+<td>末尾加D(d)</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>科学计数法：314e2=314*10^2^=31400 ; 314E-2=314*10^-2^=3.14</p>
+</li>
+<li><p>浮点数是不精确的，不能直接比较</p>
+<ul>
+<li>情况一：0.1f==1.0/10d，结果为 false</li>
+<li>情况二：422356589f==422356589f+1，结果为 true</li>
+</ul>
+</li>
+<li><p>调用 java.math 包下的两个类来比较</p>
+<ul>
+<li><p>BigInteger：实现任意精度的整数运算</p>
+</li>
+<li><p>BigDecimal：实现任意精度的浮点运算</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">BigDecimal a=BigDecimal.valueOf(<span class="number">1.0</span>);<span class="comment">//赋值</span></span><br><span class="line">a=a.subtract(BigDecimal.valueOf(<span class="number">0.1</span>)).subtract(BigDecimal.valueOf(<span class="number">0.1</span>)).subtract(BigDecimal.valueOf(<span class="number">0.1</span>)).subtract(BigDecimal.valueOf(<span class="number">0.1</span>)).subtract(BigDecimal.valueOf(<span class="number">0.1</span>));<span class="comment">//减了5次0.1</span></span><br><span class="line">System.out.println(a);<span class="comment">//结果是0.5</span></span><br><span class="line">System.out.println(<span class="number">1.0</span>-<span class="number">0.1</span>-<span class="number">0.1</span>-<span class="number">0.1</span>-<span class="number">0.1</span>-<span class="number">0.1</span>);<span class="comment">//结果是0.5000000000000001，不准确</span></span><br><span class="line"></span><br><span class="line">BigDecimal b=BigDecimal.valueOf(<span class="number">0.1</span>);</span><br><span class="line">BigDecimal c=BigDecimal.valueOf(<span class="number">1.0</span>/<span class="number">10.0</span>);</span><br><span class="line">System.out.println(b.equals(c));<span class="comment">//輸出true</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><ul>
+<li><p>char：占2字节</p>
+</li>
+<li><p>Java采用 Unicoode 标准国际字符集，包含了汉字，拥有从0到65535之间的编码，通常用 <code>&#39;/u0000&#39;</code> 到 <code>&#39;/uFFFF&#39;</code> 之间的十六进制值来表示</p>
+</li>
+<li><p>转义符</p>
+<table>
+<thead>
+<tr>
+<th>转义符</th>
+<th>含义</th>
+<th>Unicode值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\b</td>
+<td>退格（backspace）</td>
+<td>\u0008</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行</td>
+<td>\u000a</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+<td>\u000d</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表符（tab）</td>
+<td>\u0009</td>
+</tr>
+<tr>
+<td>\‘’</td>
+<td>双引号</td>
+<td>\u0022</td>
+</tr>
+<tr>
+<td>\‘</td>
+<td>单引号</td>
+<td>\u0027</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>反斜杠（\）</td>
+<td>\u005c</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h4 id="布尔型"><a href="#布尔型" class="headerlink" title="布尔型"></a>布尔型</h4><ul>
+<li>有两个常量值：<code>true/false</code> ，只占1位，所以不能用0或非0的整数来替代</li>
+<li>最好先声明 boolean 变量并赋值，再放入控制语句中，以写错</li>
+</ul>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><h4 id="类-class"><a href="#类-class" class="headerlink" title="类(class)"></a>类(class)</h4><h4 id="接口-interface"><a href="#接口-interface" class="headerlink" title="接口(interface)"></a>接口(interface)</h4><h4 id="数组-array"><a href="#数组-array" class="headerlink" title="数组(array)"></a>数组(array)</h4><p>皆占4个字节</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wysam</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://wysam.fun/2019/07/27/Java学习第二章-基本语法（上）/">http://wysam.fun/2019/07/27/Java学习第二章-基本语法（上）/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Java/"># Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/06/20/Java学习第一章-绪论/">Java学习第一章 绪论</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wysam | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
