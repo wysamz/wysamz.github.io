@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+
+<title>Spring | Wysam1972</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Wysam&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Wysam&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Spring</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Wysam</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">七月 27, 2019&nbsp;&nbsp;20:53:34</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java框架/">Java框架</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Spring是分层的Java SE/EE应用full-stack轻量级开源框架，以IoC（Invdrse Of Control：反转控制）和AOP（Aspect Oriented Programming：面向切面编程）为内核，提供了展现层Spring MWC和持久层Spring JDBC以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的JavaEE企业应用开源框架</p>
+<h3 id="IOC-DI-控制反转-依赖注入"><a href="#IOC-DI-控制反转-依赖注入" class="headerlink" title="IOC/DI(控制反转/依赖注入)"></a>IOC/DI(控制反转/依赖注入)</h3><ul>
+<li><p>准备核心配置文件applicationContext.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:tx</span>=<span class="string">"http://www.springframework.org/schema/tx"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">    <span class="attr">xsi:schemaLocation</span>=<span class="string">"</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/aop</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/aop/spring-aop-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/tx</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/tx/spring-tx-3.0.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/context     </span></span></span><br><span class="line"><span class="tag"><span class="string">   http://www.springframework.org/schema/context/spring-context-3.0.xsd"</span>&gt;</span></span><br><span class="line">  </span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"c"</span> <span class="attr">class</span>=<span class="string">"com.how2java.pojo.Category"</span>&gt;</span>	//此前创建一个类，在此反射，这个对象对应关键字c</span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"category1"</span> /&gt;</span>		//对象的name属性为category1</span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在测试类通过spring获取Category对象，以及该对象被注入的name属性</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext context = <span class="keyword">new</span> ClassPathXmlApplicationContext(</span><br><span class="line">                <span class="keyword">new</span> String[] &#123; <span class="string">"applicationContext.xml"</span> &#125;);</span><br><span class="line">Category c = (Category) context.getBean(<span class="string">"c"</span>);<span class="comment">//关键字c</span></span><br><span class="line">System.out.println(c.getName());</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Product类中有对Category对象的setter getter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> Category category;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Category <span class="title">getCategory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> category;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCategory</span><span class="params">(Category category)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.category = category;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在配置文件中用ref注入另一个对象（Category）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"c"</span> <span class="attr">class</span>=<span class="string">"com.how2java.pojo.Category"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"category1"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"p"</span> <span class="attr">class</span>=<span class="string">"com.how2java.pojo.Product"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"product1"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"category"</span> <span class="attr">ref</span>=<span class="string">"c"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>于是在测试类中product1可以调用category1的方法和属性</p>
+</li>
+<li><p><strong>注解方式</strong></p>
+<p>在beans的标签的首行添加，告诉Spring要用注解的方式进行配置。并去掉之前的注入</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:annotation-config</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"p"</span> <span class="attr">class</span>=<span class="string">"com.how2java.pojo.Product"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"name"</span> <span class="attr">value</span>=<span class="string">"product1"</span> /&gt;</span></span><br><span class="line">     <span class="comment">&lt;!--   &lt;property name="category" ref="c" /&gt;  --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>@Autowired</p>
+<ul>
+<li><p>在Product类中有关category的属性前、构造器前，或Setter前，加上@Autowired</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="keyword">private</span> Category category;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Autowired</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCategory</span><span class="params">(Category category)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.category = category;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按属性的类型查找，如有多个属性名，则报错</p>
+</li>
+</ul>
+</li>
+<li><p>@Resource</p>
+<ul>
+<li><p>同样的位置，可以在参数中指定Category对象的关键字。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Resource</span>(name=<span class="string">"c"</span>)</span><br><span class="line"><span class="keyword">private</span> Category category;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>这样即使配置文件中有多个Category对象，也能顺利找到</p>
+</li>
+</ul>
+</li>
+<li><p>@Component</p>
+<ul>
+<li><p>移除配置文件中的所有信息，并新增</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">...</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.how2java.pojo"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>告诉Spring，bean都放在这个包下</p>
+</li>
+<li><p>在两个类前加上@Component注解，即表明此类是bean</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(<span class="string">"p"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Product</span> </span>&#123;&#125;</span><br><span class="line"><span class="meta">@Component</span>(<span class="string">"c"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Category</span> </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>将属性初始化放在属性声明上</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> String name=<span class="string">"product 1"</span>;	<span class="comment">//Porduct类中</span></span><br><span class="line"><span class="keyword">private</span> String name=<span class="string">"category 1"</span>;	<span class="comment">//Category 类中</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>需搭配@Autowired使用</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="AOP-面向切面编程"><a href="#AOP-面向切面编程" class="headerlink" title="AOP(面向切面编程)"></a>AOP(面向切面编程)</h3><ul>
+<li><p>功能分类</p>
+<ul>
+<li>核心业务功能：登陆，增加数据，删除数据等</li>
+<li>周边功能（切面）：性能统计，日志，事务管理等等 </li>
+</ul>
+</li>
+<li><p>在面向切面编程的思想里面，核心业务功能和切面功能分别<strong>独立进行开发</strong>。然后把切面功能和核心业务功能 <strong>“编织”</strong> 在一起，在登陆的时候，可以看到日志输出了</p>
+</li>
+<li><p>操作过程</p>
+<ul>
+<li><p>业务类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeService</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"doSomeService"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>切面类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoggerAspect</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">log</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        Object object = (Object) joinPoint.proceed();	<span class="comment">//表示连接点（被通知方法）的执行；将Spring中的Object转成java.lang包中的Object</span></span><br><span class="line">        System.out.println(<span class="string">"end log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在配置文件中指定around后，执行业务的前后可以自定义辅助操作，甚至可以改变传入的参数</p>
+<blockquote>
+<p>Object object = (Object) joinPoint.proceed(new Object[]{“abc”});</p>
+</blockquote>
+</li>
+<li><p>配置文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">name</span>=<span class="string">"s"</span> <span class="attr">class</span>=<span class="string">"test2.ProductService"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span>	</span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"LoggerAspect"</span> <span class="attr">class</span>=<span class="string">"test2.LoggerAspect"</span>/&gt;</span>	<span class="comment">&lt;!--id是不可重复的--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span>	<span class="comment">&lt;!--aop配置，每一个子元素都相当于一个bean--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span>	</span></span><br><span class="line"><span class="tag">                      <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span>	<span class="comment">&lt;!--该切点可以共享--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span>	<span class="comment">&lt;!--一个切面--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span>	<span class="comment">&lt;!--一条通知--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>pointcut：切点。相当于一个触发器，一旦表达式中的方法执行了，即触发切面</p>
+<blockquote>
+<p>expression=” execution(* test2.ProductService.*(..))”</p>
+<ul>
+<li>execution：连接点</li>
+</ul>
+</blockquote>
+<ul>
+<li><p>第一个*：返回任意类型，包括void</p>
+</li>
+<li><p>test2.ProductService.*：表示test2包下ProductService类的任意方法</p>
+</li>
+<li><p>(..)：表示方法的参数是任意数量和类型</p>
+</li>
+<li><p>声明切点的另两种方式</p>
+<blockquote>
+<p><strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
+<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
+<p>​            &lt;aop:pointcut id=”loggerCutPoint” expression=” execution(* test2.ProductService.*(..))”/&gt;</p>
+<p>​            &lt;aop:around pointcut-ref=”loggerCutPoint” method=”time”/&gt;</p>
+<p>&lt; /aop:aspect&gt;</p>
+<p><strong>匿名切入点Bean</strong>：该切点只被该通知使用</p>
+<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
+<p>​            &lt;aop:around pointcut=” execution(* test2.ProductService.*(..))” method=”time”/&gt;</p>
+<p>&lt; /aop:aspect&gt;</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>aspect：切面</p>
+<blockquote>
+<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
+<pre><code>&lt;aop:around pointcut-ref=&quot;loggerCutPoint&quot; method=&quot;time&quot;/&gt;</code></pre><p>&lt; /aop:aspect&gt;</p>
+</blockquote>
+<ul>
+<li><p>ref：表示引用的类，即这个切面执行的是id为”LoggerAspect”的类中的方法</p>
+</li>
+<li><p>around：表示包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为</p>
+<blockquote>
+<p>before——在方法调用之前调用通知</p>
+<p>after——在方法完成之后调用通知，无论方法执行成功与否</p>
+<p>after-returning——在方法执行成功之后调用通知</p>
+<p>after-throwing——在方法抛出异常后进行通知</p>
+</blockquote>
+</li>
+<li><p>pointcut-ref：指定切点，建立了切点与切面的连接</p>
+</li>
+<li><p>method：通知执行时，调用的代理类（切面）中的方法</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>用注解执行AOP</p>
+<ul>
+<li><p>用<strong>@Component(“s”)</strong> 注解业务类，表明这是一个bean，交由Spring管理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span>(<span class="string">"s"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ProductService</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doSomeService</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"doSomeService"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用<strong>@Aspect</strong>注解切面类，<strong>@Component</strong>表明这是一个bean，<strong>@Around</strong>(value = “execution(* com.how2java.service.ProductService.<em>(..))”)表明在ProductService类中的所有方法执行的*</em>前后**进行切面操作</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LoggerAspect</span> </span>&#123; </span><br><span class="line">    <span class="meta">@Around</span>(value = <span class="string">"execution(* test2.ProductService.*(..))"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">log</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"start log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        Object object = joinPoint.proceed();</span><br><span class="line">        System.out.println(<span class="string">"end log:"</span> + joinPoint.getSignature().getName());</span><br><span class="line">        <span class="keyword">return</span> object;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除配置文件信息，并添加</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"test2"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>扫描这个包，定位业务类和切面类。并进行切面配置</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="声明式事务"><a href="#声明式事务" class="headerlink" title="声明式事务"></a>声明式事务</h3><hr>
+<p>整理自<a href="http://how2j.cn/" target="_blank" rel="noopener">how2j.cn</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Wysam</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://wysam.fun/2019/07/27/Spring/">http://wysam.fun/2019/07/27/Spring/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Java/"># Java</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/06/23/Java学习第二章-基本语法（上）/">Java学习第二章 基本语法（上）</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Wysam | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
