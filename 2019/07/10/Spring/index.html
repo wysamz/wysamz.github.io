@@ -281,25 +281,17 @@
 </li>
 <li><p>声明切点的另两种方式</p>
 <ul>
-<li><p><strong>将切点Bean声明在切面中</strong>：一般该切点只被该切面使用</p>
+<li><p>将切点Bean声明在切面中：一般该切点只被该切面使用</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">expression</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt; /<span class="attr">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
+</li>
+<li><p>匿名切入点Bean：该切点只被该通知使用</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-</ol>
-</li>
-</ul>
-<pre><code>- **匿名切入点Bean**：该切点只被该通知使用
-
-  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut</span>=<span class="string">" execution(* test2.ProductService.*(..))"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure></code></pre><ol start="3">
 <li><p>aspect：切面</p>
-<blockquote>
-<p>&lt;aop:aspect id=”logAspect” ref=”LoggerAspect”&gt;</p>
-<p>​    &lt;aop:around pointcut-ref=”loggerCutPoint” method=”time”/&gt;</p>
-<p>&lt; /aop:aspect&gt;</p>
-</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:aspect</span> <span class="attr">id</span>=<span class="string">"logAspect"</span> <span class="attr">ref</span>=<span class="string">"LoggerAspect"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">aop:around</span> <span class="attr">pointcut-ref</span>=<span class="string">"loggerCutPoint"</span> <span class="attr">method</span>=<span class="string">"time"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt; /<span class="attr">aop:aspect</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>ref：表示引用的类，即这个切面执行的是id为”LoggerAspect”的类中的方法</li>
 <li>around：表示包裹了被通知的方法，在被通知的方法调用之前和调用之后执行自定义的行为</li>
@@ -316,7 +308,7 @@
 </blockquote>
 </li>
 </ol>
-<ul>
+</li>
 <li><p>用注解执行AOP</p>
 <ul>
 <li><p>用<strong>@Component(“s”)</strong> 注解业务类，表明这是一个bean，交由Spring管理</p>
